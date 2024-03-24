@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "github.com/rish1988/satnet-api";
+
+// ServiceRegisterMessage is used to register a new libp2p service.
+message ServiceRegisterMessage {
+  string serviceTag = 1;
+  Metadata metadata = 2;
+}
+
+message Peer {
+  repeated string multiAddr = 1;
+}
+
+message Metadata {
+  optional string publicKey = 1;
+  repeated string multiAddr = 2;
+  optional Network network = 3;
+}
+
+enum Network {
+  Private = 0;
+  Public = 1;
+  Both = 2;
+}
+
+message Message {
+  optional Peer peer = 1;
+  repeated bytes Data = 2;
+}
